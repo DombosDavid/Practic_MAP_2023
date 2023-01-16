@@ -2,30 +2,30 @@ package com.company;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Repository
 {
-    public List<Tier> readFromFile(String fileName, String character) throws IOException
+    public List<Family> readFromFile(String fileName, String character) throws IOException
     {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
         String line = bufferedReader.readLine();
         String[] attributes;
-        Tier tier;
-        List<Tier> listeTiere = new ArrayList<>();
+        Family family;
+        List<Family> listeFamily = new ArrayList<>();
         while (line != null) {
             attributes = line.split(character);
-            tier = new Tier(attributes[0], attributes[1], Diaet.valueOf(attributes[2]), attributes[3]);
-            listeTiere.add(tier);
+            family = new Family(Integer.parseInt(attributes[0]), attributes[1],attributes[2], Schwierigkeit.valueOf(attributes[3]),Integer.parseInt(attributes[4]),attributes[5]);
+            listeFamily.add(family);
 
             line = bufferedReader.readLine();
         }
-        return listeTiere;
+        return listeFamily;
     }
-    public void writeToFile(String fileName, List<Tier> liste, String character) throws IOException {
+    public void writeToFile(String fileName, List<Family> families, String character) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
-        for (Tier tier : liste) {
-            String line = tier.getName() + character + tier.getWissenschaftlicherName() + character +
-                    tier.getDiaet() + character + tier.getOrt();
+        for (Family family : families) {
+            String line = family.getPerson()+character+family.getPunktzahl();
             bufferedWriter.write(line);
             bufferedWriter.newLine();
         }
