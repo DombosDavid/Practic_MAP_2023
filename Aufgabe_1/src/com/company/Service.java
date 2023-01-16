@@ -12,7 +12,7 @@ public class Service
 //    }
     public List<Family> einfacheAufgaben(List<Family> list){
         return list.stream()
-                .sorted((family,otherfamily)->family.getAufgabe().compareTo(otherfamily.getAufgabe())).collect(Collectors.toList());
+                .sorted((otherfamily,family)->family.getAufgabe().compareTo(otherfamily.getAufgabe())).collect(Collectors.toList());
     }
 //    public List<Family> punkte(List<Family> families){
 //        return families.stream().sorted((o1, o2)->o1.getPunktzahl().
